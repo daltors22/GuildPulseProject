@@ -1,208 +1,162 @@
 @"
-# 🧩 API REST Node.js – Gestion MMO / Guildes / Joueurs
+# API REST Node.js – Gestion MMO / Guildes / Joueurs
 
-> Une API RESTful développée avec Node.js et Express, organisée de manière modulaire pour la gestion de ressources telles que les utilisateurs, guildes, événements et succès.  
-> Ce projet sert de base pour toute application MMO-like ou système communautaire nécessitant une architecture back-end robuste et scalable.
+> API RESTful modulaire développée avec **Node.js** et **Express**, conçue pour la gestion des utilisateurs, guildes, événements et succès.  
+> Base solide pour toute application MMO-like ou communautaire nécessitant une architecture claire et scalable.
 
 ---
 
 ## Sommaire
-
-- [Présentation](#-présentation)
-- [Prérequis](#-prérequis)
-- [Installation](#-installation)
-- [Configuration](#-configuration)
-- [Lancement](#-lancement)
-- [Scripts disponibles](#-scripts-disponibles)
-- [Structure du projet](#-structure-du-projet)
-- [Explication des fichiers techniques](#-explication-des-fichiers-techniques)
-- [Bonnes pratiques](#-bonnes-pratiques)
-- [Contribuer](#-contribuer)
-- [Licence](#-licence)
+- [Présentation](#présentation)
+- [Prérequis](#prérequis)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Lancement](#lancement)
+- [Scripts disponibles](#scripts-disponibles)
+- [Structure du projet](#structure-du-projet)
+- [Fichiers techniques](#fichiers-techniques)
+- [Bonnes pratiques](#bonnes-pratiques)
+- [Contribuer](#contribuer)
+- [Licence](#licence)
 
 ---
 
 ## Présentation
 
-Ce projet implémente une architecture **REST complète** basée sur Express, en suivant une structure **MVC** claire :
-
-- **Models** : définissent les entités de la base de données  
-- **Controllers** : gèrent la logique métier  
-- **Routes** : exposent les endpoints de l’API  
-- **Middlewares** : gèrent les erreurs, la validation et la sécurité  
-- **Services / Utils** : fonctions réutilisables et outils techniques  
+Architecture **MVC** structurée :
+- **Models** : structures de données
+- **Controllers** : logique métier
+- **Routes** : endpoints REST
+- **Middlewares** : gestion des erreurs, validation, sécurité
+- **Services / Utils** : fonctions réutilisables (auth, logs, etc.)
 
 ---
 
 ## Prérequis
 
-Avant de cloner le projet, assurez-vous d’avoir :
-
 - **Node.js** ≥ 18  
-- **npm** ≥ 9 (ou **yarn** si préféré)  
-- **Docker** *(optionnel, pour le déploiement rapide via `docker-compose`)*  
+- **npm** ≥ 9  
+- **Docker** *(optionnel)*
 
 ---
 
-## ⚙️ Installation
+## Installation
 
-\`\`\`bash
-# 1️⃣ Cloner le projet
-git clone https://github.com/<TON_UTILISATEUR>/<TON_REPO>.git
-
-# 2️⃣ Se rendre dans le dossier
-cd api-rest-node
-
-# 3️⃣ Installer les dépendances
+```bash
+git clone git@github.com:daltors22/GuildPulseProject.git
+cd GuildPulseProject
 npm install
-\`\`\`
+Configuration
+bash
+Copier le code
+Créer un fichier .env à la racine du projet (non versionné) et y renseigner vos variables locales :
 
----
-
-## Configuration
-
-Créer un fichier `.env` à la racine du projet :
-
-\`\`\`bash
+# Exemple - à adapter à votre environnement
 PORT=3000
 DB_HOST=localhost
-DB_USER=root
-DB_PASS=secret
-DB_NAME=api_db
-JWT_SECRET=supersecretkey
-\`\`\`
+DB_USER=admin
+DB_PASS=password
+DB_NAME=guildpulse
+JWT_SECRET=cle_secrete_unique
 
-> **Ne jamais versionner** le fichier `.env` (il est déjà ignoré par `.gitignore`).
-
----
-
-## 🏁 Lancement
-
-### En développement :
-
-\`\`\`bash
+⚠️ Le fichier .env ne doit jamais être partagé ni versionné (déjà ignoré dans .gitignore).
+Lancement
+bash
+Copier le code
+# Mode développement
 npm run dev
-\`\`\`
 
-### En production :
-
-\`\`\`bash
+# Mode production
 npm start
-\`\`\`
 
-### Avec Docker :
-
-\`\`\`bash
+# Via Docker
 docker-compose up --build
-\`\`\`
-
----
-
-##  Scripts disponibles
-
+Scripts disponibles
+bash
+Copier le code
 | Commande | Description |
 |-----------|-------------|
-| \`npm start\` | Lance le serveur en mode production |
-| \`npm run dev\` | Lance le serveur avec \`nodemon\` |
-| \`npm run lint\` | Analyse le code avec ESLint |
-| \`npm run format\` | Formate le code avec Prettier |
-
----
-
-##  Structure du projet
-
-\`\`\`bash
+| npm start | Exécution en production |
+| npm run dev | Exécution avec nodemon |
+| npm run lint | Vérification ESLint |
+| npm run format | Formatage Prettier |
+Structure du projet
+bash
+Copier le code
 .
 ├── config/
-│   └── db.js                # Configuration et connexion à la base de données
-├── controllers/             # Logique métier de chaque ressource (REST)
+│   └── db.js                # Connexion et configuration base de données
+├── controllers/
 │   ├── usersController.js
 │   ├── guildsController.js
 │   └── ...
 ├── middleware/
-│   ├── errorHandler.js      # Gestion centralisée des erreurs
-│   └── notFound.js          # Middleware 404
-├── models/                  # Modèles de données (ORM ou SQL brut)
+│   ├── errorHandler.js
+│   └── notFound.js
+├── models/
 │   ├── Users.js
 │   ├── Guilds.js
 │   └── ...
-├── routes/                  # Fichiers de définition des routes Express
+├── routes/
 │   ├── usersRoutes.js
 │   ├── guildsRoutes.js
 │   └── ...
-├── services/                # Logique applicative supplémentaire (ex: envoi d’email, tokens)
+├── services/
 ├── utils/
-│   └── logger.js            # Logger centralisé (console, fichiers, etc.)
-├── .editorconfig            # Normalisation du style entre IDE
-├── .env                     # Variables d’environnement (non versionné)
-├── .eslintrc.json           # Configuration du linter ESLint
-├── .prettierrc              # Configuration du formateur Prettier
-├── docker-compose.yml       # Orchestration Docker (app + DB)
-├── Dockerfile               # Image Docker de l’application
-├── package.json             # Dépendances, scripts et métadonnées du projet
-├── package-lock.json        # Verrouillage des versions de dépendances
-├── README.md                # Documentation du projet
-└── server.js                # Point d’entrée de l’application Express
-\`\`\`
+│   └── logger.js
+├── .editorconfig
+├── .env
+├── .eslintrc.json
+├── .prettierrc
+├── docker-compose.yml
+├── Dockerfile
+├── package.json
+├── package-lock.json
+├── README.md
+└── server.js
+Fichiers techniques
+bash
+Copier le code
+| Fichier | Description |
+|----------|-------------|
+| .env | Variables d’environnement locales (non versionné) |
+| .editorconfig | Normalisation du style entre éditeurs |
+| .eslintrc.json | Règles ESLint |
+| .prettierrc | Configuration Prettier |
+| Dockerfile | Construction image Docker |
+| docker-compose.yml | Déploiement orchestré |
+| package.json | Dépendances et scripts |
+| server.js | Point d’entrée Express |
+Dépendances principales
+bash
+Copier le code
+| Catégorie | Packages |
+|------------|-----------|
+| Serveur / API | express, cors, dotenv, helmet |
+| Base de données | mysql2 ou sequelize |
+| Développement | nodemon, eslint, prettier |
+| Auth / Sécurité | jsonwebtoken, bcrypt |
+Bonnes pratiques
+bash
+Copier le code
+- Lancer npm run lint et npm run format avant chaque commit.
+- Centraliser la logique réutilisable dans services/.
+- Documenter les endpoints via Postman, Swagger ou fichier dédié.
+- Tester localement avant tout build Docker.
+Contribuer
+bash
+Copier le code
+Les contributions sont encouragées :
+Créez une branche propre à votre fonctionnalité, puis soumettez une pull request claire et commentée.
 
----
-
-## 📘 Explication des fichiers techniques
-
-| Fichier | Rôle |
-|----------|------|
-| **\`.env\`** | Contient les variables sensibles (port, clés, DB). Non versionné. |
-| **\`.editorconfig\`** | Uniformise le style entre éditeurs (indentation, fin de ligne, encodage). |
-| **\`.eslintrc.json\`** | Définit les règles de **linting** JavaScript pour garder un code propre et cohérent. |
-| **\`.prettierrc\`** | Configure **Prettier**, le formateur de code (espaces, guillemets, etc.). |
-| **\`Dockerfile\`** | Décrit comment construire l’image Docker de l’application. |
-| **\`docker-compose.yml\`** | Lance plusieurs services (API + base de données + volumes). |
-| **\`package.json\`** | Contient les métadonnées, dépendances et scripts npm. |
-| **\`server.js\`** | Point d’entrée : création du serveur Express, import des routes et middlewares. |
-
----
-
-## 📦 Principales dépendances
-
-| Catégorie | Librairies |
-|------------|-------------|
-| **Serveur / API** | \`express\`, \`cors\`, \`dotenv\`, \`helmet\` |
-| **Base de données** | \`mysql2\` ou \`sequelize\` (selon config de \`db.js\`) |
-| **Développement** | \`nodemon\`, \`eslint\`, \`prettier\` |
-| **Sécurité / Auth** | \`jsonwebtoken\`, \`bcrypt\` |
-
-> Les dépendances exactes sont listées dans le fichier \`package.json\`.
-
----
-
-## 💡 Bonnes pratiques
-
-- Respecter les conventions ESLint & Prettier avant chaque commit.  
-- Utiliser les **services** pour toute logique réutilisable (hors routes/controllers).  
-- Tenir la **documentation API** à jour (Postman, Swagger ou README dédié).  
-- Tester localement via \`npm run dev\` avant de builder l’image Docker.  
-
----
-
-## Contribuer
-
-Les contributions sont les bienvenues !  
-Créez une **branche** à partir de \`main\`, puis faites une **pull request** propre et commentée.
-
-\`\`\`bash
 git checkout -b feature/nom-fonctionnalite
 git commit -m "feat: ajout de la fonctionnalité X"
 git push origin feature/nom-fonctionnalite
-\`\`\`
+Licence
+bash
+Copier le code
+Projet sous licence MIT — libre d’utilisation et de modification avec attribution.
 
----
-
-## 🪪 Licence
-
-Ce projet est sous licence **MIT** — libre d’utilisation et de modification avec attribution.
-
----
-
-> _Auteur : [Alexandre Baudouin]_  
->  _Dernière mise à jour : Octobre 2025_
+Auteur : Alexandre Baudouin
+Dernière mise à jour : Octobre 2025
 "@ | Set-Content -Path ".\README.md"

@@ -148,6 +148,6 @@ Licence
 
 Projet sous licence MIT — libre d’utilisation et de modification avec attribution.
 
-Auteur : Alexandre Baudouin
+Auteur : @daltors22
 Dernière mise à jour : Octobre 2025
 "@ | Set-Content -Path ".\README.md"

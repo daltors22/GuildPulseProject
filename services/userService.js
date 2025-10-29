@@ -1,4 +1,4 @@
-import pool from "../models/Users.js";
+import pool from "../config/db.js";
 
 const getAllUsers = async () => {
   const [rows] = await pool.query(
@@ -7,7 +7,7 @@ const getAllUsers = async () => {
   return rows;
 };
 
-const getUserById = async (id) => {
+const getUserById = async (id) => { // ajouter UUID à la logique d'index
   const [rows] = await pool.query(
     'SELECT id, username, email, created_at, status, last_login FROM users WHERE id = ?',
     [id]

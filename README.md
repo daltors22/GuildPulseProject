@@ -1,4 +1,3 @@
-@"
 # API REST Node.js – Gestion MMO / Guildes / Joueurs
 
 > API RESTful modulaire développée avec **Node.js** et **Express**, conçue pour la gestion des utilisateurs, guildes, événements et succès.  
@@ -47,8 +46,7 @@ git clone git@github.com:daltors22/GuildPulseProject.git
 cd GuildPulseProject
 npm install
 Configuration
-bash
-Copier le code
+
 Créer un fichier .env à la racine du projet (non versionné) et y renseigner vos variables locales :
 
 # Exemple - à adapter à votre environnement
@@ -61,8 +59,7 @@ JWT_SECRET=cle_secrete_unique
 
 ⚠️ Le fichier .env ne doit jamais être partagé ni versionné (déjà ignoré dans .gitignore).
 Lancement
-bash
-Copier le code
+
 # Mode développement
 npm run dev
 
@@ -72,8 +69,7 @@ npm start
 # Via Docker
 docker-compose up --build
 Scripts disponibles
-bash
-Copier le code
+
 | Commande | Description |
 |-----------|-------------|
 | npm start | Exécution en production |
@@ -81,8 +77,7 @@ Copier le code
 | npm run lint | Vérification ESLint |
 | npm run format | Formatage Prettier |
 Structure du projet
-bash
-Copier le code
+
 .
 ├── config/
 │   └── db.js                # Connexion et configuration base de données
@@ -115,8 +110,7 @@ Copier le code
 ├── README.md
 └── server.js
 Fichiers techniques
-bash
-Copier le code
+
 | Fichier | Description |
 |----------|-------------|
 | .env | Variables d’environnement locales (non versionné) |
@@ -128,8 +122,7 @@ Copier le code
 | package.json | Dépendances et scripts |
 | server.js | Point d’entrée Express |
 Dépendances principales
-bash
-Copier le code
+
 | Catégorie | Packages |
 |------------|-----------|
 | Serveur / API | express, cors, dotenv, helmet |
@@ -137,15 +130,13 @@ Copier le code
 | Développement | nodemon, eslint, prettier |
 | Auth / Sécurité | jsonwebtoken, bcrypt |
 Bonnes pratiques
-bash
-Copier le code
+
 - Lancer npm run lint et npm run format avant chaque commit.
 - Centraliser la logique réutilisable dans services/.
 - Documenter les endpoints via Postman, Swagger ou fichier dédié.
 - Tester localement avant tout build Docker.
 Contribuer
-bash
-Copier le code
+
 Les contributions sont encouragées :
 Créez une branche propre à votre fonctionnalité, puis soumettez une pull request claire et commentée.
 
@@ -153,8 +144,7 @@ git checkout -b feature/nom-fonctionnalite
 git commit -m "feat: ajout de la fonctionnalité X"
 git push origin feature/nom-fonctionnalite
 Licence
-bash
-Copier le code
+
 Projet sous licence MIT — libre d’utilisation et de modification avec attribution.
 
 Auteur : Alexandre Baudouin

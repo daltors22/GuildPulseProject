@@ -77,7 +77,6 @@ Scripts disponibles
 | npm run lint | Vérification ESLint |
 | npm run format | Formatage Prettier |
 Structure du projet
-
 .
 ├── config/
 │   └── db.js                # Connexion et configuration base de données
@@ -109,6 +108,7 @@ Structure du projet
 ├── package-lock.json
 ├── README.md
 └── server.js
+```
 Fichiers techniques
 
 | Fichier | Description |
@@ -139,10 +139,11 @@ Contribuer
 
 Les contributions sont encouragées :
 Créez une branche propre à votre fonctionnalité, puis soumettez une pull request claire et commentée.
-
+```bash
 git checkout -b feature/nom-fonctionnalite
 git commit -m "feat: ajout de la fonctionnalité X"
 git push origin feature/nom-fonctionnalite
+```
 Licence
 
 Projet sous licence MIT — libre d’utilisation et de modification avec attribution.

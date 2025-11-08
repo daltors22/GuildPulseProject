@@ -1,12 +1,12 @@
 
 import express from "express";
 import {
-  getAllEvent_participants,getEvent_participantsById,createEvent_participants,updateEvent_participants,deleteEvent_participants
+  getAllEventParticipants,getEventParticipantsById,createEventParticipants,updateEventParticipants,deleteEventParticipants
 } from "../controllers/event_participantsController.js";
 const router = express.Router();
-router.get("/",getAllEvent_participants);
-router.get("/:id",getEvent_participantsById);
-router.post("/",createEvent_participants);
-router.put("/:id",updateEvent_participants);
-router.delete("/:id",deleteEvent_participants);
+router.get("/",getAllEventParticipants);
+router.get("/:id",getEventParticipantsById);
+router.post("/",createEventParticipants);
+router.put("/:id",updateEventParticipants);
+router.delete("/:id",deleteEventParticipants);
 export default router;

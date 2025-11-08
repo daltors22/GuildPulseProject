@@ -1,12 +1,12 @@
 
 import express from "express";
 import {
-  getAllEvent_types,getEvent_typesById,createEvent_types,updateEvent_types,deleteEvent_types
+  getAllEventTypes,getEventTypesById,createEventTypes,updateEventTypes,deleteEventTypes
 } from "../controllers/event_typesController.js";
 const router = express.Router();
-router.get("/",getAllEvent_types);
-router.get("/:id",getEvent_typesById);
-router.post("/",createEvent_types);
-router.put("/:id",updateEvent_types);
-router.delete("/:id",deleteEvent_types);
+router.get("/",getAllEventTypes);
+router.get("/:id",getEventTypesById);
+router.post("/",createEventTypes);
+router.put("/:id",updateEventTypes);
+router.delete("/:id",deleteEventTypes);
 export default router;
